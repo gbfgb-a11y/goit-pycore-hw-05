@@ -57,33 +57,30 @@ def delete(name, contacts):
     return 'contact deleted.'
 
 
+@input_error
 def main():
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
         user_inp = input("Enter a command: ")
-        command, args = command_spliting(user_inp)
-        try:    
-            if command == 'hello':
+        command, args = command_spliting(user_inp) 
+        if command == 'hello':
                 print('"How can I help you?"')
-            elif command in ['close','exit']:
+        elif command in ['close','exit']:
                 print("Good bye!")
                 break
-            elif command == 'add':
+        elif command == 'add':
                 print(adding_inf(args, contacts))
-            elif command == 'phone':
+        elif command == 'phone':
                 print(get_phonenum(args[0],contacts))
-            elif command == 'all':
+        elif command == 'all':
                 for i in all(contacts):
                     print(i)
-            elif command == 'change':
+        elif command == 'change':
                 print(change(args, contacts))
-            elif command == 'delete':
+        elif command == 'delete':
                 print(delete(args[0], contacts))
-            else:
+        else:
                 print("Invalid command.")
-        except ValueError:
-            print('Your line is empty, try again later.')
-            
 if __name__ == '__main__':
     main()
